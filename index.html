@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일룸 VOC 모니터링 대시보드</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', -apple-system, sans-serif; background: #f0f2f5; color: #222; }
+  .header { background: #1a1a2e; color: white; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header .meta { font-size: 13px; color: #aaa; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: white; border-radius: 12px; padding: 20px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .card .label { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .card .value { font-size: 28px; font-weight: 700; }
+  .card.alert .value { color: #e74c3c; }
+  .card.good .value { color: #27ae60; }
+  .section { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .section h2 { font-size: 15px; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #f0f2f5; }
+  .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f8f9fa; padding: 10px 12px; text-align: left; font-weight: 600; color: #555; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0f2f5; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .center { text-align: center; }
+  .muted { color: #888; font-size: 12px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .badge-pos { background: #d4edda; color: #155724; }
+  .badge-neu { background: #e2e8f0; color: #555; }
+  .badge-neg { background: #f8d7da; color: #721c24; }
+  .badge-ok { background: #d4edda; color: #155724; }
+  .kw-tag { background: #e8f4fd; color: #0066cc; padding: 2px 8px; border-radius: 8px; font-size: 11px; }
+  .bar-wrap { display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: #f0f2f5; }
+  .bar { height: 100%; transition: width 0.3s; }
+  .bar-pos { background: #27ae60; }
+  .bar-neu { background: #95a5a6; }
+  .bar-neg { background: #e74c3c; }
+  a { color: #0066cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .status-banner { background: #e74c3c; color: white; padding: 10px 24px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  @media (max-width: 768px) { .charts-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 일룸 VOC 모니터링 대시보드</h1>
+  <div class="meta">마지막 업데이트: 2026-02-25 20:01</div>
+</div>
+
+<div class="status-banner">
+  ⚠️ 2026-02-25 기준 &nbsp;|&nbsp; 오늘 수집: <strong>78건</strong> &nbsp;|&nbsp; 최근 7일 부정 글: <strong>2건</strong> &nbsp;|&nbsp; 마지막 실행: 2026-02-25 19:22:52
+</div>
+
+<div class="container">
+
+  <!-- KPI 카드 -->
+  <div class="cards">
+    <div class="card">
+      <div class="label">오늘 수집</div>
+      <div class="value">78<span style="font-size:14px;color:#888;margin-left:4px;">건</span></div>
+    </div>
+    <div class="card">
+      <div class="label">최근 30일 수집</div>
+      <div class="value">367<span style="font-size:14px;color:#888;margin-left:4px;">건</span></div>
+    </div>
+    <div class="card alert">
+      <div class="label">부정 글 (최근 7일)</div>
+      <div class="value">2<span style="font-size:14px;color:#888;margin-left:4px;">건</span></div>
+    </div>
+    <div class="card good">
+      <div class="label">긍정 글 (최근 30일)</div>
+      <div class="value">298<span style="font-size:14px;color:#888;margin-left:4px;">건</span></div>
+    </div>
+  </div>
+
+  <!-- 차트 -->
+  <div class="charts-row">
+    <div class="section">
+      <h2>📈 날짜별 수집량 (최근 14일)</h2>
+      <canvas id="trendChart" height="120"></canvas>
+    </div>
+    <div class="section">
+      <h2>🥧 감정 비율 (최근 30일)</h2>
+      <canvas id="donutChart" height="120"></canvas>
+    </div>
+  </div>
+
+  <!-- 키워드별 현황 -->
+  <div class="section">
+    <h2>🔍 키워드별 현황 (최근 30일)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>키워드</th>
+          <th class="center">전체</th>
+          <th class="center">긍정</th>
+          <th class="center">중립</th>
+          <th class="center">부정</th>
+          <th style="width:200px;">감정 비율</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><strong>한샘 매트리스</strong></td>
+            <td class="center">58</td>
+            <td class="center"><span class="badge badge-pos">50</span></td>
+            <td class="center"><span class="badge badge-neu">8</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:86%" title="긍정 86%"></div>
+                    <div class="bar bar-neu" style="width:14%" title="중립 14%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸</strong></td>
+            <td class="center">55</td>
+            <td class="center"><span class="badge badge-pos">47</span></td>
+            <td class="center"><span class="badge badge-neu">8</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:85%" title="긍정 85%"></div>
+                    <div class="bar bar-neu" style="width:15%" title="중립 15%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 소파</strong></td>
+            <td class="center">47</td>
+            <td class="center"><span class="badge badge-pos">33</span></td>
+            <td class="center"><span class="badge badge-neu">13</span></td>
+            <td class="center"><span class="badge badge-neg">1</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:70%" title="긍정 70%"></div>
+                    <div class="bar bar-neu" style="width:28%" title="중립 28%"></div>
+                    <div class="bar bar-neg" style="width:2%" title="부정 2%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 책상</strong></td>
+            <td class="center">46</td>
+            <td class="center"><span class="badge badge-pos">39</span></td>
+            <td class="center"><span class="badge badge-neu">6</span></td>
+            <td class="center"><span class="badge badge-neg">1</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:85%" title="긍정 85%"></div>
+                    <div class="bar bar-neu" style="width:13%" title="중립 13%"></div>
+                    <div class="bar bar-neg" style="width:2%" title="부정 2%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 식탁</strong></td>
+            <td class="center">45</td>
+            <td class="center"><span class="badge badge-pos">30</span></td>
+            <td class="center"><span class="badge badge-neu">15</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:67%" title="긍정 67%"></div>
+                    <div class="bar bar-neu" style="width:33%" title="중립 33%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 매트리스</strong></td>
+            <td class="center">40</td>
+            <td class="center"><span class="badge badge-pos">32</span></td>
+            <td class="center"><span class="badge badge-neu">7</span></td>
+            <td class="center"><span class="badge badge-neg">1</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:80%" title="긍정 80%"></div>
+                    <div class="bar bar-neu" style="width:18%" title="중립 18%"></div>
+                    <div class="bar bar-neg" style="width:2%" title="부정 2%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 프로모션</strong></td>
+            <td class="center">24</td>
+            <td class="center"><span class="badge badge-pos">22</span></td>
+            <td class="center"><span class="badge badge-neu">1</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:92%" title="긍정 92%"></div>
+                    <div class="bar bar-neu" style="width:4%" title="중립 4%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 뉴트</strong></td>
+            <td class="center">21</td>
+            <td class="center"><span class="badge badge-pos">20</span></td>
+            <td class="center"><span class="badge badge-neu">1</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:95%" title="긍정 95%"></div>
+                    <div class="bar bar-neu" style="width:5%" title="중립 5%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>헤이븐 매트리스</strong></td>
+            <td class="center">17</td>
+            <td class="center"><span class="badge badge-pos">17</span></td>
+            <td class="center"><span class="badge badge-neu">0</span></td>
+            <td class="center"><span class="badge badge-ok">0</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:100%" title="긍정 100%"></div>
+                    <div class="bar bar-neu" style="width:0%" title="중립 0%"></div>
+                    <div class="bar bar-neg" style="width:0%" title="부정 0%"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>일룸 밴쿠버</strong></td>
+            <td class="center">14</td>
+            <td class="center"><span class="badge badge-pos">8</span></td>
+            <td class="center"><span class="badge badge-neu">5</span></td>
+            <td class="center"><span class="badge badge-neg">1</span></td>
+            <td>
+                <div class="bar-wrap">
+                    <div class="bar bar-pos" style="width:57%" title="긍정 57%"></div>
+                    <div class="bar bar-neu" style="width:36%" title="중립 36%"></div>
+                    <div class="bar bar-neg" style="width:7%" title="부정 7%"></div>
+                </div>
+            </td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <!-- 부정 글 목록 -->
+  <div class="section">
+    <h2>⚠️ 부정 언급 목록 (최근 7일)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="center">날짜</th>
+          <th class="center">키워드</th>
+          <th>제목</th>
+          <th>블로그</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr>
+                <td class="center">2026-02-23</td>
+                <td class="center"><span class="kw-tag">일룸 소파</span></td>
+                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank">신혼집 이사주간 가구를 들여보자</a></td>
+                <td class="muted">UlsanseouL</td>
+            </tr>
+            <tr>
+                <td class="center">2026-02-23</td>
+                <td class="center"><span class="kw-tag">일룸 밴쿠버</span></td>
+                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank">신혼집 이사주간 가구를 들여보자</a></td>
+                <td class="muted">UlsanseouL</td>
+            </tr></tbody>
+    </table>
+  </div>
+
+  <!-- 실행 로그 -->
+  <div class="section">
+    <h2>🗂 실행 로그 (최근 10회)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>실행일시</th>
+          <th class="center">키워드수</th>
+          <th class="center">수집건수</th>
+          <th class="center">상태</th>
+          <th class="center">소요시간</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr>
+                <td>2026-02-25 19:22:52</td>
+                <td class="center">10</td>
+                <td class="center">78</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">218.69초</td>
+            </tr>
+            <tr>
+                <td>2026-02-23 08:32:20</td>
+                <td class="center">10</td>
+                <td class="center">35</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">153.18초</td>
+            </tr>
+            <tr>
+                <td>2026-02-18 19:09:00</td>
+                <td class="center">10</td>
+                <td class="center">67</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">225.37초</td>
+            </tr>
+            <tr>
+                <td>2026-02-18 19:04:59</td>
+                <td class="center">10</td>
+                <td class="center">67</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">214.00초</td>
+            </tr>
+            <tr>
+                <td>2026-02-17 14:53:25</td>
+                <td class="center">10</td>
+                <td class="center">44</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">146.62초</td>
+            </tr>
+            <tr>
+                <td>2026-02-16 21:50:17</td>
+                <td class="center">10</td>
+                <td class="center">76</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">124.20초</td>
+            </tr>
+            <tr>
+                <td>2026-02-16 21:40:40</td>
+                <td class="center">10</td>
+                <td class="center">76</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">123.08초</td>
+            </tr>
+            <tr>
+                <td>2026-02-16 21:38:30</td>
+                <td class="center">10</td>
+                <td class="center">76</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">123.24초</td>
+            </tr>
+            <tr>
+                <td>2026-02-16 21:36:22</td>
+                <td class="center">10</td>
+                <td class="center">76</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">126.52초</td>
+            </tr>
+            <tr>
+                <td>2026-02-16 21:12:50</td>
+                <td class="center">10</td>
+                <td class="center">73</td>
+                <td class="center"><span class="badge badge-ok">성공</span></td>
+                <td class="center">68.39초</td>
+            </tr></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// 트렌드 차트
+const trendCtx = document.getElementById('trendChart').getContext('2d');
+new Chart(trendCtx, {
+  type: 'bar',
+  data: {
+    labels: ["2026-02-16", "2026-02-17", "2026-02-18", "2026-02-23", "2026-02-25"],
+    datasets: [
+      { label: '긍정', data: [65, 38, 106, 32, 57], backgroundColor: '#27ae6099', borderRadius: 3 },
+      { label: '중립', data: [8, 6, 28, 1, 21], backgroundColor: '#95a5a699', borderRadius: 3 },
+      { label: '부정', data: [2, 0, 0, 2, 0], backgroundColor: '#e74c3c99', borderRadius: 3 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'top', labels: { font: { size: 11 } } } },
+    scales: {
+      x: { stacked: true, ticks: { font: { size: 10 } } },
+      y: { stacked: true, ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// 도넛 차트
+const donutCtx = document.getElementById('donutChart').getContext('2d');
+new Chart(donutCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['긍정', '중립', '부정'],
+    datasets: [{ data: [298, 64, 4], backgroundColor: ['#27ae60', '#95a5a6', '#e74c3c'], borderWidth: 2 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } } }
+  }
+});
+</script>
+
+</body>
+</html>
