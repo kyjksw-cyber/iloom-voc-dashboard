@@ -404,7 +404,7 @@ a.link:hover { color: var(--primary); }
       <button class="range-btn active" onclick="setRange(30, this)">30일</button>
     </div>
     <div class="topbar-right">
-      <span class="update-time">업데이트: 2026. 02. 26  14:32</span>
+      <span class="update-time">업데이트: 2026. 02. 26  14:35</span>
       <div class="topbar-user">
         <div class="topbar-avatar">김</div>
         <div class="topbar-user-text">
@@ -1017,12 +1017,12 @@ Chart.defaults.font.family = "'Inter', 'Malgun Gothic', sans-serif";
 const trendChart = new Chart(document.getElementById('trendChart').getContext('2d'), {
   type: 'bar',
   data: {
-    labels: ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"],
+    labels: ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"],
     datasets: [
-      { label: '긍정', data: [65, 38, 106, 32, 57, 27], backgroundColor: '#7C65F6', borderRadius: 3, borderSkipped: false },
-      { label: '중립', data: [8, 6, 28, 1, 21, 32], backgroundColor: '#A29BFE', borderRadius: 3, borderSkipped: false },
-      { label: '부정', data: [2, 0, 0, 2, 0, 0], backgroundColor: '#FF7675', borderRadius: 3, borderSkipped: false },
-      { label: '무관', data: [0, 0, 0, 0, 0, 0], backgroundColor: '#DFE6E9', borderRadius: 3, borderSkipped: false },
+      { label: '긍정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], backgroundColor: '#7C65F6', borderRadius: 3, borderSkipped: false },
+      { label: '중립', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], backgroundColor: '#A29BFE', borderRadius: 3, borderSkipped: false },
+      { label: '부정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], backgroundColor: '#FF7675', borderRadius: 3, borderSkipped: false },
+      { label: '무관', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], backgroundColor: '#DFE6E9', borderRadius: 3, borderSkipped: false },
     ]
   },
   options: {
@@ -1062,7 +1062,7 @@ const kwTrendDatasets = [{"label": "일룸", "data": [9, 8, 18, 10, 10, 9], "bor
 new Chart(document.getElementById('kwTrendChart').getContext('2d'), {
   type: 'line',
   data: {
-    labels: ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"],
+    labels: ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"],
     datasets: kwTrendDatasets,
   },
   options: {
@@ -1079,9 +1079,9 @@ new Chart(document.getElementById('kwTrendChart').getContext('2d'), {
 });
 
 // ── 날짜 범위 버튼 ────────────────────────────────────────────────────────────
-const allDates = ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"];
+const allDates = ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"];
 const chartData = {
-  pos: [65, 38, 106, 32, 57, 27], neu: [8, 6, 28, 1, 21, 32], neg: [2, 0, 0, 2, 0, 0], irr: [0, 0, 0, 0, 0, 0]
+  pos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], neu: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], neg: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], irr: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 };
 function setRange(days, btn) {
   document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
