@@ -404,7 +404,7 @@ a.link:hover { color: var(--primary); }
       <button class="range-btn active" onclick="setRange(30, this)">30일</button>
     </div>
     <div class="topbar-right">
-      <span class="update-time">업데이트: 2026. 02. 26  15:04</span>
+      <span class="update-time">업데이트: 2026. 02. 26  15:26</span>
       <div class="topbar-user">
         <div class="topbar-avatar">김</div>
         <div class="topbar-user-text">
@@ -422,7 +422,7 @@ a.link:hover { color: var(--primary); }
     <div class="page-header">
       <div class="page-title">VOC 모니터링 대시보드</div>
       <div class="page-actions">
-        <div class="date-chip">📅 2026-02-26 &nbsp;·&nbsp; 최근 30일</div>
+        <div class="date-chip">📅 2026-02-26 &nbsp;·&nbsp; <span id="label-period">최근 30일</span></div>
         <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="btn">↓ 구글 시트</a>
       </div>
     </div>
@@ -479,9 +479,9 @@ a.link:hover { color: var(--primary); }
             <div class="card-title-icon">📈</div>
             수집 트렌드 (감정별)
           </div>
-          <span style="font-size:11px;color:var(--text-3)">최근 14일</span>
+          <span id="label-trend" style="font-size:11px;color:var(--text-3)">최근 30일</span>
         </div>
-        <div class="card-sub">↗ 긍정 325 · 중립 96 · 부정 4 · 무관 0</div>
+        <div class="card-sub" id="label-trend-sub">↗ 긍정 325 · 중립 96 · 부정 4 · 무관 0</div>
         <canvas id="trendChart" height="90"></canvas>
         <div class="chart-legend">
           <span><span class="legend-dot" style="background:#7C65F6"></span>긍정</span>
@@ -496,9 +496,9 @@ a.link:hover { color: var(--primary); }
             <div class="card-title-icon">🥧</div>
             감정 분포
           </div>
-          <span style="font-size:11px;color:var(--text-3)">최근 30일</span>
+          <span id="label-donut" style="font-size:11px;color:var(--text-3)">최근 30일</span>
         </div>
-        <div class="card-sub">↗ 긍정률 76% (전체 425건)</div>
+        <div class="card-sub" id="label-donut-sub">↗ 긍정률 76% (전체 425건)</div>
         <canvas id="donutChart" height="175"></canvas>
       </div>
     </div>
@@ -509,7 +509,7 @@ a.link:hover { color: var(--primary); }
         <div class="section-title">
           <div class="card-title-icon">〜</div>
           키워드별 수집 트렌드
-          <span class="chip chip-neutral" style="font-size:10px">최근 14일</span>
+          <span class="chip chip-neutral" id="label-kw-trend" style="font-size:10px">최근 30일</span>
         </div>
       </div>
       <div style="padding:20px 24px">
@@ -523,7 +523,7 @@ a.link:hover { color: var(--primary); }
         <div class="section-title">
           <div class="card-title-icon">🔍</div>
           키워드별 현황
-          <span class="chip chip-neutral" style="font-size:10px">최근 30일</span>
+          <span class="chip chip-neutral" id="label-kw-table" style="font-size:10px">최근 30일</span>
           <span class="filter-hint" id="filterHint" onclick="clearKwFilter()" style="display:none">× 필터 해제</span>
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="see-all">전체 보기 →</a>
@@ -811,7 +811,7 @@ a.link:hover { color: var(--primary); }
         <div class="section-title">
           <div class="card-title-icon" style="background:var(--danger-light)">⚠️</div>
           부정 언급 목록
-          <span class="chip chip-neutral" style="font-size:10px">최근 7일</span>
+          <span class="chip chip-neutral" id="label-neg" style="font-size:10px">최근 30일</span>
         </div>
         <span class="chip chip-danger">2건</span>
       </div>
@@ -1136,8 +1136,22 @@ function updateKpi(days) {
   irrBadge.className = 'kpi-badge ' + (irrRate >= 30 ? 'down' : irrRate >= 10 ? 'neutral' : 'up');
 
   // 도넛 차트
-  donutChart.data.datasets[0].data = [sumPos, neu.reduce((a,b)=>a+b,0), sumNeg, sumIrr];
+  const sumNeu = neu.reduce((a,b)=>a+b,0);
+  donutChart.data.datasets[0].data = [sumPos, sumNeu, sumNeg, sumIrr];
   donutChart.update();
+
+  // 라벨 텍스트 업데이트
+  const periodLabel = '최근 ' + days + '일';
+  ['label-period','label-trend','label-donut','label-kw-trend','label-kw-table','label-neg'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = periodLabel;
+  });
+  // 트렌드 카드 sub 텍스트
+  document.getElementById('label-trend-sub').textContent =
+    '↗ 긍정 ' + sumPos + ' · 중립 ' + sumNeu + ' · 부정 ' + sumNeg + ' · 무관 ' + sumIrr;
+  const posRateSent = sumSent > 0 ? Math.round(sumPos/sumSent*100) : 0;
+  document.getElementById('label-donut-sub').textContent =
+    '↗ 긍정률 ' + posRateSent + '% (전체 ' + sumSent + '건)';
 }
 
 function setRange(days, btn) {
