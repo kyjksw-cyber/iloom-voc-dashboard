@@ -16,6 +16,8 @@
   --danger-light: #FFE8EE;
   --success: #00C897;
   --success-light: #DFFAF3;
+  --warn: #FDCB6E;
+  --warn-light: #FFF6DE;
   --bg: #F4F7FC;
   --card: #FFFFFF;
   --border: #EDF0F7;
@@ -44,27 +46,19 @@ body {
   min-height: 100vh;
   background: var(--card);
   border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 0; top: 0; bottom: 0;
-  z-index: 100;
+  display: flex; flex-direction: column;
+  position: fixed; left: 0; top: 0; bottom: 0; z-index: 100;
 }
 .sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 10px;
   padding: 20px 18px 16px;
   border-bottom: 1px solid var(--border);
 }
 .logo-icon {
   width: 34px; height: 34px;
-  background: var(--primary);
-  border-radius: 9px;
+  background: var(--primary); border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  color: white;
-  font-size: 15px; font-weight: 700;
-  flex-shrink: 0;
+  color: white; font-size: 15px; font-weight: 700; flex-shrink: 0;
 }
 .logo-text { font-size: 15px; font-weight: 700; line-height: 1.2; }
 .logo-sub { font-size: 10px; color: var(--text-3); font-weight: 400; margin-top: 1px; }
@@ -74,99 +68,84 @@ body {
 .nav-group-label {
   font-size: 10px; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--text-3);
-  padding: 10px 10px 4px;
+  color: var(--text-3); padding: 10px 10px 4px;
 }
 .nav-item {
   display: flex; align-items: center; gap: 10px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: var(--text-2);
+  padding: 9px 12px; border-radius: 8px;
+  cursor: pointer; color: var(--text-2);
   font-size: 13px; font-weight: 500;
-  text-decoration: none;
-  transition: all 0.12s;
-  margin-bottom: 1px;
+  text-decoration: none; transition: all 0.12s; margin-bottom: 1px;
 }
 .nav-item:hover { background: var(--bg); color: var(--text-1); }
-.nav-item.active {
-  background: var(--primary-light);
-  color: var(--primary);
-  font-weight: 600;
-}
+.nav-item.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
 .nav-icon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
 .nav-badge {
-  margin-left: auto;
-  background: var(--danger); color: white;
-  font-size: 10px; font-weight: 700;
-  padding: 1px 6px; border-radius: 10px;
+  margin-left: auto; background: var(--danger); color: white;
+  font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px;
 }
-
-.sidebar-footer {
-  padding: 14px 14px;
-  border-top: 1px solid var(--border);
-}
+.sidebar-footer { padding: 14px; border-top: 1px solid var(--border); }
 .user-card {
   display: flex; align-items: center; gap: 10px;
-  padding: 10px 10px;
-  border-radius: 9px;
-  background: var(--bg);
+  padding: 10px; border-radius: 9px; background: var(--bg);
 }
 .user-avatar {
   width: 34px; height: 34px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--teal) 100%);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 12px; font-weight: 700;
-  flex-shrink: 0;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 12px; font-weight: 700; flex-shrink: 0;
 }
 .user-name { font-size: 13px; font-weight: 600; }
 .user-role { font-size: 11px; color: var(--text-3); }
 
 /* ─── Main ─── */
-.main {
-  margin-left: var(--sidebar-w);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+.main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
 
 /* ─── Topbar ─── */
 .topbar {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 0 28px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 0 28px; height: 58px;
+  display: flex; align-items: center; gap: 14px;
   position: sticky; top: 0; z-index: 50;
 }
+.search-wrap { position: relative; flex: 1; max-width: 320px; }
 .search-box {
   display: flex; align-items: center; gap: 8px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 7px 14px;
-  flex: 1; max-width: 300px;
-  color: var(--text-3); font-size: 13px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 14px;
+  width: 100%; color: var(--text-3); font-size: 13px;
 }
-.topbar-right {
-  display: flex; align-items: center; gap: 18px;
-  margin-left: auto;
+.search-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; box-shadow: var(--shadow); z-index: 200;
+  max-height: 260px; overflow-y: auto; display: none;
 }
+.search-result-item {
+  padding: 10px 14px; cursor: pointer; font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--bg); }
+.search-result-kw { font-weight: 600; color: var(--primary); font-size: 11px; }
+
+.range-btns { display: flex; gap: 4px; }
+.range-btn {
+  padding: 5px 11px; border-radius: 7px; font-size: 12px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text-2);
+  cursor: pointer; transition: all 0.1s;
+}
+.range-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+.topbar-right { display: flex; align-items: center; gap: 18px; margin-left: auto; }
 .update-time { font-size: 12px; color: var(--text-3); }
-.topbar-user {
-  display: flex; align-items: center; gap: 9px;
-}
+.topbar-user { display: flex; align-items: center; gap: 9px; }
 .topbar-avatar {
   width: 32px; height: 32px;
   background: linear-gradient(135deg, var(--primary), var(--teal));
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
   color: white; font-size: 11px; font-weight: 700;
 }
-.topbar-user-text { font-size: 13px; }
 .topbar-user-text strong { display: block; font-weight: 600; font-size: 13px; }
 .topbar-user-text span { font-size: 11px; color: var(--text-3); }
 
@@ -174,144 +153,119 @@ body {
 .page-content { padding: 26px 28px; flex: 1; }
 .page-header {
   display: flex; align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
+  justify-content: space-between; margin-bottom: 10px;
 }
 .page-title { font-size: 21px; font-weight: 700; }
 .page-actions { display: flex; align-items: center; gap: 10px; }
 .date-chip {
   display: flex; align-items: center; gap: 6px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 7px 14px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 14px;
   font-size: 13px; color: var(--text-2); font-weight: 500;
   box-shadow: var(--shadow);
 }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 16px;
-  border-radius: 8px;
-  font-size: 13px; font-weight: 500;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text-2);
-  text-decoration: none;
-  box-shadow: var(--shadow);
-  transition: all 0.12s;
+  padding: 7px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text-2); text-decoration: none;
+  box-shadow: var(--shadow); transition: all 0.12s;
 }
 .btn:hover { border-color: var(--primary); color: var(--primary); }
 
+/* ─── Insight Bar ─── */
+.insight-bar {
+  background: linear-gradient(90deg, var(--primary-light) 0%, var(--teal-light) 100%);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 18px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  font-size: 12px; color: var(--text-2);
+}
+.insight-item { display: flex; align-items: center; gap: 6px; }
+.insight-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
 /* ─── KPI Cards ─── */
 .kpi-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 20px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-bottom: 20px;
 }
 .kpi-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px 22px; box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
 .kpi-label {
-  font-size: 11px; font-weight: 500;
-  color: var(--text-3);
+  font-size: 11px; font-weight: 500; color: var(--text-3);
   text-transform: uppercase; letter-spacing: 0.05em;
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
 }
-.kpi-info { width: 14px; height: 14px; opacity: 0.4; }
 .kpi-value {
-  font-size: 30px; font-weight: 700;
-  line-height: 1;
-  margin-bottom: 10px;
-  display: flex; align-items: baseline; gap: 5px;
+  font-size: 30px; font-weight: 700; line-height: 1;
+  margin-bottom: 10px; display: flex; align-items: baseline; gap: 5px;
 }
 .kpi-unit { font-size: 14px; color: var(--text-3); font-weight: 400; }
 .kpi-badge {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 3px 9px;
-  border-radius: 6px;
+  padding: 3px 9px; border-radius: 6px;
   font-size: 11px; font-weight: 600;
 }
 .kpi-badge.up { background: var(--success-light); color: #00966E; }
 .kpi-badge.neutral { background: #F1F3F5; color: var(--text-2); }
 .kpi-badge.down { background: var(--danger-light); color: #D93025; }
+.kpi-goal-bar {
+  margin-top: 10px; height: 4px;
+  background: var(--bg); border-radius: 10px; overflow: hidden;
+}
+.kpi-goal-fill { height: 100%; border-radius: 10px; transition: width 0.5s; }
 
-/* ─── Charts row ─── */
+/* ─── Charts ─── */
 .charts-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 14px;
-  margin-bottom: 16px;
+  display: grid; grid-template-columns: 2fr 1fr;
+  gap: 14px; margin-bottom: 16px;
+}
+.charts-row-2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 16px;
 }
 .card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 22px 24px;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: var(--radius);
+  padding: 22px 24px; box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
 .card-header {
   display: flex; align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  justify-content: space-between; margin-bottom: 18px;
 }
 .card-title {
   font-size: 13px; font-weight: 600;
   display: flex; align-items: center; gap: 8px;
 }
 .card-title-icon {
-  width: 28px; height: 28px;
-  background: var(--primary-light);
-  border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; background: var(--primary-light);
+  border-radius: 7px; display: flex; align-items: center; justify-content: center;
   font-size: 13px;
 }
-.card-select {
-  font-size: 11px; color: var(--text-2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 4px 8px;
-  background: var(--bg);
-}
-.card-big-num {
-  font-size: 26px; font-weight: 700;
-  margin-bottom: 4px;
-  display: flex; align-items: baseline; gap: 5px;
-}
-.card-big-unit { font-size: 15px; color: var(--text-3); font-weight: 400; }
-.card-sub { font-size: 12px; color: var(--teal); font-weight: 500; margin-bottom: 18px; }
+.card-sub { font-size: 12px; color: var(--teal); font-weight: 500; margin-bottom: 14px; }
 .chart-legend {
-  display: flex; gap: 14px;
-  margin-top: 14px; font-size: 11px; color: var(--text-2);
+  display: flex; gap: 14px; margin-top: 14px;
+  font-size: 11px; color: var(--text-2); flex-wrap: wrap;
 }
 .legend-dot {
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 2px;
-  margin-right: 4px;
-  vertical-align: middle;
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 2px; margin-right: 4px; vertical-align: middle;
 }
 
 /* ─── Section / Table ─── */
 .section {
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  margin-bottom: 14px;
-  overflow: hidden;
+  background: var(--card); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  margin-bottom: 14px; overflow: hidden;
 }
 .section-header {
   display: flex; align-items: center;
   justify-content: space-between;
-  padding: 16px 22px;
-  border-bottom: 1px solid var(--border);
+  padding: 16px 22px; border-bottom: 1px solid var(--border);
 }
 .section-title {
   font-size: 13px; font-weight: 600;
@@ -320,18 +274,13 @@ body {
 .see-all { font-size: 12px; color: var(--primary); font-weight: 500; text-decoration: none; }
 table { width: 100%; border-collapse: collapse; }
 thead th {
-  background: var(--bg);
-  padding: 9px 16px;
-  text-align: left;
+  background: var(--bg); padding: 9px 16px; text-align: left;
   font-size: 10px; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--text-3);
-  border-bottom: 1px solid var(--border);
+  color: var(--text-3); border-bottom: 1px solid var(--border);
 }
 tbody td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
+  padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 13px;
 }
 tbody tr:last-child td { border-bottom: none; }
 tbody tr:hover td { background: #FAFBFE; }
@@ -342,40 +291,41 @@ tbody tr:hover td { background: #FAFBFE; }
 /* ─── Chips ─── */
 .chip {
   display: inline-flex; align-items: center;
-  padding: 3px 9px;
-  border-radius: 20px;
-  font-size: 11px; font-weight: 600;
-  white-space: nowrap;
+  padding: 3px 9px; border-radius: 20px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
 }
 .chip-success { background: var(--success-light); color: #00966E; }
 .chip-neutral { background: #F1F3F5; color: #6B7280; }
 .chip-danger { background: var(--danger-light); color: #D93025; }
 .chip-primary { background: var(--primary-light); color: var(--primary); }
+.chip-muted { background: #F8F9FA; color: #9CA3AF; border: 1px solid #E5E7EB; }
 
 /* ─── Progress ─── */
 .progress-wrap { display: flex; align-items: center; gap: 8px; }
-.progress-bar {
-  flex: 1; height: 5px;
-  background: var(--bg); border-radius: 10px; overflow: hidden;
-}
+.progress-bar { flex: 1; height: 5px; background: var(--bg); border-radius: 10px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 10px; }
-.progress-label {
-  font-size: 11px; color: var(--text-2); font-weight: 500;
-  min-width: 30px; text-align: right;
-}
+.progress-label { font-size: 11px; color: var(--text-2); font-weight: 500; min-width: 30px; text-align: right; }
 
 /* ─── KW Cell ─── */
 .kw-cell { display: flex; align-items: center; gap: 9px; }
 .kw-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
 a.link { color: var(--text-1); text-decoration: none; font-weight: 500; }
 a.link:hover { color: var(--primary); }
 
+/* ─── Active filter ─── */
+.filter-active td { background: var(--primary-light) !important; }
+.filter-hint {
+  font-size: 11px; color: var(--primary); font-weight: 500;
+  cursor: pointer; margin-left: 8px;
+}
+.neg-row.hidden { display: none; }
+
+@media (max-width: 1100px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px) {
   .sidebar { display: none; }
   .main { margin-left: 0; }
   .kpi-row { grid-template-columns: 1fr 1fr; }
-  .charts-row { grid-template-columns: 1fr; }
+  .charts-row, .charts-row-2 { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -391,7 +341,6 @@ a.link:hover { color: var(--primary); }
       <div class="logo-sub">모니터링 대시보드</div>
     </div>
   </div>
-
   <nav class="sidebar-nav">
     <div class="nav-group">
       <div class="nav-group-label">General</div>
@@ -407,28 +356,33 @@ a.link:hover { color: var(--primary); }
       </a>
     </div>
     <div class="nav-group">
-      <div class="nav-group-label">Tools</div>
+      <div class="nav-group-label">분석</div>
       <a class="nav-item" href="#section-trend">
         <span class="nav-icon">↗</span> 수집 트렌드
       </a>
-      <a class="nav-item" href="#section-log">
-        <span class="nav-icon">≡</span> 실행 로그
+      <a class="nav-item" href="#section-kw-trend">
+        <span class="nav-icon">〜</span> 키워드 트렌드
+      </a>
+      <a class="nav-item" href="#section-bloggers">
+        <span class="nav-icon">◎</span> 반복 블로거
       </a>
     </div>
     <div class="nav-group">
-      <div class="nav-group-label">Support</div>
+      <div class="nav-group-label">Tools</div>
+      <a class="nav-item" href="#section-log">
+        <span class="nav-icon">≡</span> 실행 로그
+      </a>
       <a class="nav-item" href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank">
         <span class="nav-icon">⊞</span> 구글 시트
       </a>
     </div>
   </nav>
-
   <div class="sidebar-footer">
     <div class="user-card">
-      <div class="user-avatar">마</div>
+      <div class="user-avatar">김</div>
       <div>
-        <div class="user-name">마케팅팀</div>
-        <div class="user-role">iloom · 고문정팀</div>
+        <div class="user-name">김선우</div>
+        <div class="user-role">iloom · 영업효율개선팀</div>
       </div>
     </div>
   </div>
@@ -436,17 +390,26 @@ a.link:hover { color: var(--primary); }
 
 <!-- ═══════════ Main ═══════════ -->
 <div class="main">
-
   <!-- Topbar -->
   <header class="topbar">
-    <div class="search-box">🔍 <span>키워드, 날짜 검색...</span></div>
+    <div class="search-wrap">
+      <div class="search-box" onclick="document.getElementById('searchInput').focus()">
+        🔍 <input id="searchInput" placeholder="제목, 블로거 검색..." style="border:none;background:transparent;outline:none;font-size:13px;width:100%;color:var(--text-1)" oninput="doSearch(this.value)">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <div class="range-btns">
+      <button class="range-btn" onclick="setRange(7, this)">7일</button>
+      <button class="range-btn active" onclick="setRange(14, this)">14일</button>
+      <button class="range-btn" onclick="setRange(30, this)">30일</button>
+    </div>
     <div class="topbar-right">
-      <span class="update-time">업데이트: 2026. 02. 26  12:00</span>
+      <span class="update-time">업데이트: 2026. 02. 26  14:12</span>
       <div class="topbar-user">
-        <div class="topbar-avatar">마</div>
+        <div class="topbar-avatar">김</div>
         <div class="topbar-user-text">
-          <strong>마케팅팀</strong>
-          <span>iloom</span>
+          <strong>김선우</strong>
+          <span>영업효율개선팀</span>
         </div>
       </div>
     </div>
@@ -457,67 +420,100 @@ a.link:hover { color: var(--primary); }
 
     <!-- Header -->
     <div class="page-header">
-      <div class="page-title">VOC 대시보드</div>
+      <div class="page-title">VOC 모니터링 대시보드</div>
       <div class="page-actions">
         <div class="date-chip">📅 2026-02-26 &nbsp;·&nbsp; 최근 30일</div>
-        <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="btn">↓ Export</a>
+        <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="btn">↓ 구글 시트</a>
       </div>
     </div>
 
-    <!-- KPI -->
+    <!-- Insight Bar -->
+    <div class="insight-bar">
+      <div class="insight-item">
+        <div class="insight-dot" style="background:#7C65F6"></div>
+        <span>↗ 이번 주 긍정률 67% (전주 82%, -15%p)</span>
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot" style="background:#FF6584"></div>
+        <span>⚠ 이번 주 부정 2건, 전주 2건</span>
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot" style="background:#A0AEC0"></div>
+        <span>무관 비율 0% (양호)</span>
+      </div>
+    </div>
+
+    <!-- KPI (4개) -->
     <div class="kpi-row">
       <div class="kpi-card">
         <div class="kpi-label">👁 오늘 수집</div>
         <div class="kpi-value">59<span class="kpi-unit">건</span></div>
-        <span class="kpi-badge neutral">최근 30일 누계 426건</span>
+        <span class="kpi-badge neutral">30일 누계 426건</span>
+        <div class="kpi-goal-bar" style="margin-top:12px">
+          <div class="kpi-goal-fill" style="width:100%;background:#FDCB6E"></div>
+        </div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px">월 목표 300건 중 426건 (100%)</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">💚 긍정률</div>
-        <div class="kpi-value">76<span class="kpi-unit">%</span></div>
-        <span class="kpi-badge up">↗ 긍정 325건 · 중립 96건</span>
+        <div class="kpi-label">💚 긍정률 (7일)</div>
+        <div class="kpi-value" style="color:var(--primary)">67<span class="kpi-unit">%</span></div>
+        <span class="kpi-badge down">↘ 전주 대비 -15%p</span>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">⚠ 부정 알림 (7일)</div>
         <div class="kpi-value" style="color:var(--danger)">2<span class="kpi-unit">건</span></div>
-        <span class="kpi-badge down">↘ 모니터링 필요</span>
+        <span class="kpi-badge neutral">→ 전주와 동일</span>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🚫 무관 비율 (30일)</div>
+        <div class="kpi-value" style="color:var(--text-2)">0<span class="kpi-unit">%</span></div>
+        <span class="kpi-badge up">↗ 양호</span>
       </div>
     </div>
 
-    <!-- Charts -->
+    <!-- Charts Row 1: 트렌드 + 도넛 -->
     <div class="charts-row" id="section-trend">
       <div class="card">
         <div class="card-header">
-          <div>
-            <div class="card-title">
-              <div class="card-title-icon">📈</div>
-              수집 트렌드
-            </div>
+          <div class="card-title">
+            <div class="card-title-icon">📈</div>
+            수집 트렌드 (감정별)
           </div>
-          <span class="card-select">최근 14일</span>
+          <span style="font-size:11px;color:var(--text-3)">최근 14일</span>
         </div>
-        <div class="card-big-num">426<span class="card-big-unit">건</span></div>
-        <div class="card-sub">↗ 긍정 325 · 중립 96 · 부정 4</div>
-        <canvas id="trendChart" height="85"></canvas>
+        <div class="card-sub">↗ 긍정 325 · 중립 96 · 부정 4 · 무관 0</div>
+        <canvas id="trendChart" height="90"></canvas>
         <div class="chart-legend">
           <span><span class="legend-dot" style="background:#7C65F6"></span>긍정</span>
           <span><span class="legend-dot" style="background:#A29BFE"></span>중립</span>
           <span><span class="legend-dot" style="background:#FF7675"></span>부정</span>
+          <span><span class="legend-dot" style="background:#DFE6E9"></span>무관</span>
         </div>
       </div>
-
       <div class="card">
         <div class="card-header">
-          <div>
-            <div class="card-title">
-              <div class="card-title-icon">🥧</div>
-              감정 비율
-            </div>
+          <div class="card-title">
+            <div class="card-title-icon">🥧</div>
+            감정 분포
           </div>
-          <span class="card-select">최근 30일</span>
+          <span style="font-size:11px;color:var(--text-3)">최근 30일</span>
         </div>
-        <div class="card-big-num">425<span class="card-big-unit">건</span></div>
-        <div class="card-sub">↗ 긍정률 76%</div>
-        <canvas id="donutChart" height="165"></canvas>
+        <div class="card-sub">↗ 긍정률 76% (전체 425건)</div>
+        <canvas id="donutChart" height="175"></canvas>
+      </div>
+    </div>
+
+    <!-- Charts Row 2: 키워드 트렌드 라인 -->
+    <div class="section" id="section-kw-trend" style="margin-bottom:14px">
+      <div class="section-header">
+        <div class="section-title">
+          <div class="card-title-icon">〜</div>
+          키워드별 수집 트렌드
+          <span class="chip chip-neutral" style="font-size:10px">최근 14일</span>
+        </div>
+      </div>
+      <div style="padding:20px 24px">
+        <canvas id="kwTrendChart" height="70"></canvas>
       </div>
     </div>
 
@@ -528,10 +524,11 @@ a.link:hover { color: var(--primary); }
           <div class="card-title-icon">🔍</div>
           키워드별 현황
           <span class="chip chip-neutral" style="font-size:10px">최근 30일</span>
+          <span class="filter-hint" id="filterHint" onclick="clearKwFilter()" style="display:none">× 필터 해제</span>
         </div>
         <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="see-all">전체 보기 →</a>
       </div>
-      <table>
+      <table id="kwTable">
         <thead>
           <tr>
             <th>키워드</th>
@@ -539,11 +536,13 @@ a.link:hover { color: var(--primary); }
             <th class="text-center">긍정</th>
             <th class="text-center">중립</th>
             <th class="text-center">부정</th>
-            <th style="min-width:140px">긍정률</th>
+            <th class="text-center">무관</th>
+            <th style="min-width:130px">긍정률</th>
+            <th class="text-center" style="width:70px">건강도</th>
           </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr data-kw="한샘 매트리스" style="cursor:pointer" onclick="filterByKw('한샘 매트리스', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#7C65F6"></span>
@@ -554,6 +553,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">60</span></td>
             <td class="text-center"><span class="chip chip-neutral">8</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -562,8 +562,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">88%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸" style="cursor:pointer" onclick="filterByKw('일룸', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#00CEC9"></span>
@@ -574,6 +579,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">55</span></td>
             <td class="text-center"><span class="chip chip-neutral">9</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -582,8 +588,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">86%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 소파" style="cursor:pointer" onclick="filterByKw('일룸 소파', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#FF7675"></span>
@@ -594,6 +605,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">36</span></td>
             <td class="text-center"><span class="chip chip-neutral">19</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -602,8 +614,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">64%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 책상" style="cursor:pointer" onclick="filterByKw('일룸 책상', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#FDCB6E"></span>
@@ -614,6 +631,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">40</span></td>
             <td class="text-center"><span class="chip chip-neutral">15</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -622,8 +640,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">71%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 식탁" style="cursor:pointer" onclick="filterByKw('일룸 식탁', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#00B894"></span>
@@ -634,6 +657,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">31</span></td>
             <td class="text-center"><span class="chip chip-neutral">24</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -642,8 +666,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">56%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 매트리스" style="cursor:pointer" onclick="filterByKw('일룸 매트리스', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#A29BFE"></span>
@@ -654,6 +683,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">35</span></td>
             <td class="text-center"><span class="chip chip-neutral">14</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -662,8 +692,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">70%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 프로모션" style="cursor:pointer" onclick="filterByKw('일룸 프로모션', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#FD79A8"></span>
@@ -674,6 +709,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">23</span></td>
             <td class="text-center"><span class="chip chip-neutral">1</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -682,8 +718,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">92%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 뉴트" style="cursor:pointer" onclick="filterByKw('일룸 뉴트', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#6C5CE7"></span>
@@ -694,6 +735,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">20</span></td>
             <td class="text-center"><span class="chip chip-neutral">1</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -702,8 +744,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">95%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="헤이븐 매트리스" style="cursor:pointer" onclick="filterByKw('헤이븐 매트리스', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#7C65F6"></span>
@@ -714,6 +761,7 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">17</span></td>
             <td class="text-center"><span class="chip chip-neutral">0</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
@@ -722,8 +770,13 @@ a.link:hover { color: var(--primary); }
                     <span class="progress-label">100%</span>
                 </div>
             </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
         </tr>
-        <tr>
+        <tr data-kw="일룸 밴쿠버" style="cursor:pointer" onclick="filterByKw('일룸 밴쿠버', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#00CEC9"></span>
@@ -734,12 +787,18 @@ a.link:hover { color: var(--primary); }
             <td class="text-center"><span class="chip chip-success">8</span></td>
             <td class="text-center"><span class="chip chip-neutral">5</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
                         <div class="progress-fill" style="width:57%;background:#00CEC9"></div>
                     </div>
                     <span class="progress-label">57%</span>
+                </div>
+            </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
                 </div>
             </td>
         </tr></tbody>
@@ -756,27 +815,114 @@ a.link:hover { color: var(--primary); }
         </div>
         <span class="chip chip-danger">2건</span>
       </div>
-      <table>
+      <table id="negTable">
         <thead>
           <tr>
             <th class="text-center" style="width:64px">날짜</th>
             <th class="text-center" style="width:130px">키워드</th>
-            <th>제목</th>
+            <th>제목 / 요약</th>
             <th style="width:140px">블로그</th>
           </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr class="neg-row" data-kw="일룸 밴쿠버">
                 <td class="text-center text-muted">02-23</td>
                 <td class="text-center"><span class="chip chip-primary">일룸 밴쿠버</span></td>
-                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank" class="link">신혼집 이사주간 가구를 들여보자</a></td>
+                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank" class="link">신혼집 이사주간 가구를 들여보자</a>
+                    <div class="text-muted" style="margin-top:2px;font-size:11px">꽂혔던 일룸 소파 벤쿠버 가죽 근데 할인 1도안하고 넘 비쌈ㅠ 일룸은 할인을 정말 안한다 무슨 스툴이 53만원이야 다음 보게된 자코모 소파~ 왕 비싼 브랜드인줄 알았는데 할인한다!</div>
+                </td>
                 <td class="text-muted">UlsanseouL</td>
             </tr>
-            <tr>
+            <tr class="neg-row" data-kw="일룸 소파">
                 <td class="text-center text-muted">02-23</td>
                 <td class="text-center"><span class="chip chip-primary">일룸 소파</span></td>
-                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank" class="link">신혼집 이사주간 가구를 들여보자</a></td>
+                <td><a href="https://blog.naver.com/dtqls53/224192243001" target="_blank" class="link">신혼집 이사주간 가구를 들여보자</a>
+                    <div class="text-muted" style="margin-top:2px;font-size:11px">꽂혔던 일룸 소파 벤쿠버 가죽 근데 할인 1도안하고 넘 비쌈ㅠ 일룸은 할인을 정말 안한다 무슨 스툴이 53만원이야 다음 보게된 자코모 소파~ 왕 비싼 브랜드인줄 알았는데 할인한다!</div>
+                </td>
                 <td class="text-muted">UlsanseouL</td>
+            </tr></tbody>
+      </table>
+    </div>
+
+    <!-- 반복 블로거 -->
+    <div class="section" id="section-bloggers">
+      <div class="section-header">
+        <div class="section-title">
+          <div class="card-title-icon" style="background:#F1F3F5">◎</div>
+          반복 등장 블로거
+          <span class="chip chip-neutral" style="font-size:10px">30일 · 2회↑</span>
+        </div>
+        <span style="font-size:11px;color:var(--text-3)">광고성·업체성 블로거 모니터링</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="text-center" style="width:40px">#</th>
+            <th>블로거</th>
+            <th class="text-center">등장 횟수</th>
+            <th class="text-center">주요 감정</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">1</td>
+                <td style="font-weight:500">SINCE 1996 대한민국 최초 심부름대행사 1833-5311</td>
+                <td class="text-center">48회</td>
+                <td class="text-center"><span class="chip chip-neutral">중립</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">2</td>
+                <td style="font-weight:500">[일룸 울산점] iloom_ulsan</td>
+                <td class="text-center">16회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">3</td>
+                <td style="font-weight:500">iloom l 일룸 봉선점</td>
+                <td class="text-center">12회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">4</td>
+                <td style="font-weight:500">일룸 광천점</td>
+                <td class="text-center">10회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">5</td>
+                <td style="font-weight:500">이충인 주거환경 컨설팅</td>
+                <td class="text-center">10회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">6</td>
+                <td style="font-weight:500">일룸 롯데 메종동부산점 블로그</td>
+                <td class="text-center">8회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">7</td>
+                <td style="font-weight:500">호텔의날</td>
+                <td class="text-center">6회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">8</td>
+                <td style="font-weight:500">육아 살림 기록</td>
+                <td class="text-center">6회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">9</td>
+                <td style="font-weight:500">부산 에디터 장그린</td>
+                <td class="text-center">6회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
+            </tr>
+            <tr>
+                <td class="text-center text-muted" style="width:36px">10</td>
+                <td style="font-weight:500">일룸 달서점</td>
+                <td class="text-center">5회</td>
+                <td class="text-center"><span class="chip chip-success">긍정</span></td>
             </tr></tbody>
       </table>
     </div>
@@ -867,15 +1013,16 @@ a.link:hover { color: var(--primary); }
 <script>
 Chart.defaults.font.family = "'Inter', 'Malgun Gothic', sans-serif";
 
-// 트렌드 차트
-new Chart(document.getElementById('trendChart').getContext('2d'), {
+// ── 트렌드 스택 바 차트 ───────────────────────────────────────────────────────
+const trendChart = new Chart(document.getElementById('trendChart').getContext('2d'), {
   type: 'bar',
   data: {
     labels: ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"],
     datasets: [
-      { label: '긍정', data: [65, 38, 106, 32, 57, 27], backgroundColor: '#7C65F6', borderRadius: 4, borderSkipped: false },
-      { label: '중립', data: [8, 6, 28, 1, 21, 32], backgroundColor: '#A29BFE', borderRadius: 4, borderSkipped: false },
-      { label: '부정', data: [2, 0, 0, 2, 0, 0], backgroundColor: '#FF7675', borderRadius: 4, borderSkipped: false },
+      { label: '긍정', data: [65, 38, 106, 32, 57, 27], backgroundColor: '#7C65F6', borderRadius: 3, borderSkipped: false },
+      { label: '중립', data: [8, 6, 28, 1, 21, 32], backgroundColor: '#A29BFE', borderRadius: 3, borderSkipped: false },
+      { label: '부정', data: [2, 0, 0, 2, 0, 0], backgroundColor: '#FF7675', borderRadius: 3, borderSkipped: false },
+      { label: '무관', data: [0, 0, 0, 0, 0, 0], backgroundColor: '#DFE6E9', borderRadius: 3, borderSkipped: false },
     ]
   },
   options: {
@@ -883,26 +1030,24 @@ new Chart(document.getElementById('trendChart').getContext('2d'), {
     plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
     scales: {
       x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 }, color: '#A0AEC0' } },
-      y: { stacked: true, grid: { color: '#F0F2F8', lineWidth: 1 }, ticks: { font: { size: 10 }, color: '#A0AEC0' }, border: { display: false } }
+      y: { stacked: true, grid: { color: '#F0F2F8' }, ticks: { font: { size: 10 }, color: '#A0AEC0' }, border: { display: false } }
     }
   }
 });
 
-// 도넛 차트
+// ── 도넛 차트 ─────────────────────────────────────────────────────────────────
 new Chart(document.getElementById('donutChart').getContext('2d'), {
   type: 'doughnut',
   data: {
-    labels: ['긍정', '중립', '부정'],
+    labels: ['긍정', '중립', '부정', '무관'],
     datasets: [{
-      data: [325, 96, 4],
-      backgroundColor: ['#7C65F6', '#A29BFE', '#FF7675'],
-      borderWidth: 0,
-      hoverOffset: 8,
+      data: [325, 96, 4, 0],
+      backgroundColor: ['#7C65F6', '#A29BFE', '#FF7675', '#DFE6E9'],
+      borderWidth: 0, hoverOffset: 8,
     }]
   },
   options: {
-    responsive: true,
-    cutout: '70%',
+    responsive: true, cutout: '70%',
     plugins: {
       legend: {
         position: 'bottom',
@@ -912,7 +1057,84 @@ new Chart(document.getElementById('donutChart').getContext('2d'), {
   }
 });
 
-// 사이드바 스크롤 링크
+// ── 키워드 트렌드 라인 차트 ───────────────────────────────────────────────────
+const kwTrendDatasets = [{"label": "일룸", "data": [9, 8, 18, 10, 10, 9], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 뉴트", "data": [7, 1, 8, 0, 5, 0], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 매트리스", "data": [8, 8, 14, 0, 10, 10], "borderColor": "#FF7675", "backgroundColor": "#FF767522", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 밴쿠버", "data": [10, 0, 2, 1, 1, 0], "borderColor": "#FDCB6E", "backgroundColor": "#FDCB6E22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 소파", "data": [8, 3, 20, 6, 10, 9], "borderColor": "#00B894", "backgroundColor": "#00B89422", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 식탁", "data": [5, 4, 20, 6, 10, 10], "borderColor": "#A29BFE", "backgroundColor": "#A29BFE22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 책상", "data": [9, 6, 20, 1, 10, 10], "borderColor": "#FD79A8", "backgroundColor": "#FD79A822", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 프로모션", "data": [5, 0, 8, 2, 9, 1], "borderColor": "#6C5CE7", "backgroundColor": "#6C5CE722", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "한샘 매트리스", "data": [9, 10, 20, 9, 10, 10], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "헤이븐 매트리스", "data": [6, 4, 4, 0, 3, 0], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}];
+new Chart(document.getElementById('kwTrendChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"],
+    datasets: kwTrendDatasets,
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 12, usePointStyle: true, pointStyleWidth: 8 } },
+      tooltip: { mode: 'index', intersect: false }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#A0AEC0' } },
+      y: { grid: { color: '#F0F2F8' }, ticks: { font: { size: 10 }, color: '#A0AEC0', stepSize: 1 }, border: { display: false } }
+    }
+  }
+});
+
+// ── 날짜 범위 버튼 ────────────────────────────────────────────────────────────
+const allDates = ["02-16", "02-17", "02-18", "02-23", "02-25", "02-26"];
+const chartData = {
+  pos: [65, 38, 106, 32, 57, 27], neu: [8, 6, 28, 1, 21, 32], neg: [2, 0, 0, 2, 0, 0], irr: [0, 0, 0, 0, 0, 0]
+};
+function setRange(days, btn) {
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sliced = allDates.slice(-days);
+  trendChart.data.labels = sliced;
+  trendChart.data.datasets[0].data = chartData.pos.slice(-days);
+  trendChart.data.datasets[1].data = chartData.neu.slice(-days);
+  trendChart.data.datasets[2].data = chartData.neg.slice(-days);
+  trendChart.data.datasets[3].data = chartData.irr.slice(-days);
+  trendChart.update();
+}
+
+// ── 키워드 필터 (클릭) ─────────────────────────────────────────────────────────
+let activeKw = null;
+function filterByKw(kw, row) {
+  if (activeKw === kw) { clearKwFilter(); return; }
+  activeKw = kw;
+  document.querySelectorAll('#kwTable tbody tr').forEach(r => r.classList.remove('filter-active'));
+  row.classList.add('filter-active');
+  document.querySelectorAll('.neg-row').forEach(r => {
+    r.classList.toggle('hidden', r.dataset.kw !== kw);
+  });
+  document.getElementById('filterHint').style.display = 'inline';
+  document.getElementById('section-negatives').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function clearKwFilter() {
+  activeKw = null;
+  document.querySelectorAll('#kwTable tbody tr').forEach(r => r.classList.remove('filter-active'));
+  document.querySelectorAll('.neg-row').forEach(r => r.classList.remove('hidden'));
+  document.getElementById('filterHint').style.display = 'none';
+}
+
+// ── 실시간 검색 ──────────────────────────────────────────────────────────────
+const negData = [{"kw": "일룸 밴쿠버", "title": "신혼집 이사주간 가구를 들여보자", "url": "https://blog.naver.com/dtqls53/224192243001", "blog": "UlsanseouL"}, {"kw": "일룸 소파", "title": "신혼집 이사주간 가구를 들여보자", "url": "https://blog.naver.com/dtqls53/224192243001", "blog": "UlsanseouL"}];
+function doSearch(q) {
+  const box = document.getElementById('searchResults');
+  if (!q || q.length < 2) { box.style.display = 'none'; return; }
+  const lower = q.toLowerCase();
+  const hits = negData.filter(r => r.title.toLowerCase().includes(lower) || r.blog.toLowerCase().includes(lower)).slice(0, 8);
+  if (!hits.length) { box.style.display = 'none'; return; }
+  box.innerHTML = hits.map(r => `<div class="search-result-item" onclick="window.open('${r.url}','_blank')">
+    <div class="search-result-kw">${r.kw}</div>
+    <div>${r.title}</div>
+    <div class="text-muted">${r.blog}</div>
+  </div>`).join('');
+  box.style.display = 'block';
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) document.getElementById('searchResults').style.display = 'none';
+});
+
+// ── 사이드바 스크롤 링크 ──────────────────────────────────────────────────────
 document.querySelectorAll('.nav-item[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const id = a.getAttribute('href').slice(1);
