@@ -404,7 +404,7 @@ a.link:hover { color: var(--primary); }
       <button class="range-btn active" onclick="setRange(30, this)">30일</button>
     </div>
     <div class="topbar-right">
-      <span class="update-time">업데이트: 2026. 02. 26  15:02</span>
+      <span class="update-time">업데이트: 2026. 02. 26  15:04</span>
       <div class="topbar-user">
         <div class="topbar-avatar">김</div>
         <div class="topbar-user-text">
@@ -446,28 +446,28 @@ a.link:hover { color: var(--primary); }
     <!-- KPI (4개) -->
     <div class="kpi-row">
       <div class="kpi-card">
-        <div class="kpi-label">👁 오늘 수집</div>
-        <div class="kpi-value">59<span class="kpi-unit">건</span></div>
-        <span class="kpi-badge neutral">30일 누계 426건</span>
+        <div class="kpi-label">👁 수집 건수</div>
+        <div class="kpi-value"><span id="kpi-total">-</span><span class="kpi-unit">건</span></div>
+        <span class="kpi-badge neutral" id="kpi-total-sub"></span>
         <div class="kpi-goal-bar" style="margin-top:12px">
-          <div class="kpi-goal-fill" style="width:100%;background:#FDCB6E"></div>
+          <div class="kpi-goal-fill" id="kpi-goal-fill" style="width:100%;background:#FDCB6E"></div>
         </div>
-        <div style="font-size:10px;color:var(--text-3);margin-top:4px">월 목표 300건 중 426건 (100%)</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px" id="kpi-goal-text">월 목표 300건 중 426건 (100%)</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">💚 긍정률 (7일)</div>
-        <div class="kpi-value" style="color:var(--primary)">67<span class="kpi-unit">%</span></div>
-        <span class="kpi-badge down">↘ 전주 대비 -15%p</span>
+        <div class="kpi-label">💚 긍정률</div>
+        <div class="kpi-value" style="color:var(--primary)"><span id="kpi-pos-rate">-</span><span class="kpi-unit">%</span></div>
+        <span class="kpi-badge neutral" id="kpi-pos-badge"></span>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">⚠ 부정 알림 (7일)</div>
-        <div class="kpi-value" style="color:var(--danger)">2<span class="kpi-unit">건</span></div>
-        <span class="kpi-badge neutral">→ 전주와 동일</span>
+        <div class="kpi-label">⚠ 부정 알림</div>
+        <div class="kpi-value"><span id="kpi-neg-count" style="color:var(--danger)">-</span><span class="kpi-unit">건</span></div>
+        <span class="kpi-badge neutral" id="kpi-neg-badge"></span>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">🚫 무관 비율 (30일)</div>
-        <div class="kpi-value" style="color:var(--text-2)">0<span class="kpi-unit">%</span></div>
-        <span class="kpi-badge up">↗ 양호</span>
+        <div class="kpi-label">🚫 무관 비율</div>
+        <div class="kpi-value" style="color:var(--text-2)"><span id="kpi-irr-rate">-</span><span class="kpi-unit">%</span></div>
+        <span class="kpi-badge neutral" id="kpi-irr-badge"></span>
       </div>
     </div>
 
@@ -1036,7 +1036,7 @@ const trendChart = new Chart(document.getElementById('trendChart').getContext('2
 });
 
 // ── 도넛 차트 ─────────────────────────────────────────────────────────────────
-new Chart(document.getElementById('donutChart').getContext('2d'), {
+const donutChart = new Chart(document.getElementById('donutChart').getContext('2d'), {
   type: 'doughnut',
   data: {
     labels: ['긍정', '중립', '부정', '무관'],
@@ -1083,8 +1083,63 @@ const kwTrendChart = new Chart(document.getElementById('kwTrendChart').getContex
 // ── 날짜 범위 버튼 ────────────────────────────────────────────────────────────
 const allDates = ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"];
 const chartData = {
-  pos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], neu: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], neg: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], irr: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  pos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], neu: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], neg: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], irr: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], total: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 76, 44, 134, 0, 0, 0, 0, 35, 0, 78, 59]
 };
+const MONTHLY_GOAL = 300;
+
+function updateKpi(days) {
+  const pos  = chartData.pos.slice(-days);
+  const neu  = chartData.neu.slice(-days);
+  const neg  = chartData.neg.slice(-days);
+  const irr  = chartData.irr.slice(-days);
+  const tot  = chartData.total.slice(-days);
+
+  const sumPos  = pos.reduce((a,b)=>a+b,0);
+  const sumNeg  = neg.reduce((a,b)=>a+b,0);
+  const sumIrr  = irr.reduce((a,b)=>a+b,0);
+  const sumTot  = tot.reduce((a,b)=>a+b,0);
+  const sumSent = sumPos + neu.reduce((a,b)=>a+b,0) + sumNeg;
+
+  // 전반기(days 이전 days 구간) 계산 - 전주 대비
+  const posPrev = chartData.pos.slice(-days*2, -days).reduce((a,b)=>a+b,0);
+  const totPrev = chartData.total.slice(-days*2, -days).reduce((a,b)=>a+b,0);
+  const negPrev = chartData.neg.slice(-days*2, -days).reduce((a,b)=>a+b,0);
+
+  const posRate = sumSent > 0 ? Math.round(sumPos/sumSent*100) : 0;
+  const posRatePrev = totPrev > 0 ? Math.round(posPrev/(totPrev)*100) : 0;
+  const posDelta = posRate - posRatePrev;
+  const irrRate = sumTot > 0 ? Math.round(sumIrr/sumTot*100) : 0;
+  const negDelta = sumNeg - negPrev;
+
+  // 수집 건수
+  document.getElementById('kpi-total').textContent = sumTot;
+  document.getElementById('kpi-total-sub').textContent = days + '일 기준';
+
+  // 긍정률
+  document.getElementById('kpi-pos-rate').textContent = posRate;
+  const posBadge = document.getElementById('kpi-pos-badge');
+  posBadge.textContent = posDelta > 0 ? '↗ 전기 대비 +'+posDelta+'%p' : posDelta < 0 ? '↘ 전기 대비 '+posDelta+'%p' : '→ 전기와 동일';
+  posBadge.className = 'kpi-badge ' + (posDelta > 0 ? 'up' : posDelta < 0 ? 'down' : 'neutral');
+
+  // 부정 알림
+  const negEl = document.getElementById('kpi-neg-count');
+  negEl.textContent = sumNeg;
+  negEl.style.color = sumNeg > 0 ? 'var(--danger)' : 'var(--success)';
+  const negBadge = document.getElementById('kpi-neg-badge');
+  negBadge.textContent = negDelta > 0 ? '↘ 전기 대비 +'+negDelta+'건 증가' : negDelta < 0 ? '↗ 전기 대비 '+negDelta+'건 감소' : sumNeg===0 ? '↗ 이상 없음' : '→ 전기와 동일';
+  negBadge.className = 'kpi-badge ' + (negDelta > 0 ? 'down' : negDelta < 0 ? 'up' : 'neutral');
+
+  // 무관 비율
+  document.getElementById('kpi-irr-rate').textContent = irrRate;
+  const irrBadge = document.getElementById('kpi-irr-badge');
+  irrBadge.textContent = irrRate >= 30 ? '↘ 필터 점검 필요' : irrRate >= 10 ? '→ 보통' : '↗ 양호';
+  irrBadge.className = 'kpi-badge ' + (irrRate >= 30 ? 'down' : irrRate >= 10 ? 'neutral' : 'up');
+
+  // 도넛 차트
+  donutChart.data.datasets[0].data = [sumPos, neu.reduce((a,b)=>a+b,0), sumNeg, sumIrr];
+  donutChart.update();
+}
+
 function setRange(days, btn) {
   document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1102,7 +1157,11 @@ function setRange(days, btn) {
     ds.data = ds.fullData.slice(-days);
   });
   kwTrendChart.update();
+  // KPI 업데이트
+  updateKpi(days);
 }
+// 초기 KPI 렌더
+setRange(30, document.querySelector('.range-btn.active'));
 
 // ── 키워드 필터 (클릭) ─────────────────────────────────────────────────────────
 let activeKw = null;
