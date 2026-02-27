@@ -404,7 +404,7 @@ a.link:hover { color: var(--primary); }
       <button class="range-btn active" onclick="setRange(30, this)">30일</button>
     </div>
     <div class="topbar-right">
-      <span class="update-time">업데이트: 2026. 02. 26  17:19</span>
+      <span class="update-time">업데이트: 2026. 02. 27  09:49</span>
       <div class="topbar-user">
         <div class="topbar-avatar">김</div>
         <div class="topbar-user-text">
@@ -422,7 +422,7 @@ a.link:hover { color: var(--primary); }
     <div class="page-header">
       <div class="page-title">VOC 모니터링 대시보드</div>
       <div class="page-actions">
-        <div class="date-chip">📅 2026-02-26 &nbsp;·&nbsp; <span id="label-period">최근 30일</span></div>
+        <div class="date-chip">📅 2026-02-27 &nbsp;·&nbsp; <span id="label-period">최근 30일</span></div>
         <a href="https://docs.google.com/spreadsheets/d/1dRrvzfkq9_ovBkUBVLJOxQ7fP6pJXnFwfkyVZlyEMes/edit" target="_blank" class="btn">↓ 구글 시트</a>
       </div>
     </div>
@@ -431,7 +431,7 @@ a.link:hover { color: var(--primary); }
     <div class="insight-bar">
       <div class="insight-item">
         <div class="insight-dot" style="background:#7C65F6"></div>
-        <span>↗ 이번 주 긍정률 67% (전주 82%, -15%p)</span>
+        <span>↗ 이번 주 긍정률 64% (전주 82%, -18%p)</span>
       </div>
       <div class="insight-item">
         <div class="insight-dot" style="background:#FF6584"></div>
@@ -452,7 +452,7 @@ a.link:hover { color: var(--primary); }
         <div class="kpi-goal-bar" style="margin-top:12px">
           <div class="kpi-goal-fill" id="kpi-goal-fill" style="width:100%;background:#FDCB6E"></div>
         </div>
-        <div style="font-size:10px;color:var(--text-3);margin-top:4px" id="kpi-goal-text">월 목표 300건 중 426건 (100%)</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:4px" id="kpi-goal-text">월 목표 300건 중 445건 (100%)</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">💚 긍정률</div>
@@ -481,7 +481,7 @@ a.link:hover { color: var(--primary); }
           </div>
           <span id="label-trend" style="font-size:11px;color:var(--text-3)">최근 30일</span>
         </div>
-        <div class="card-sub" id="label-trend-sub">↗ 긍정 325 · 중립 96 · 부정 4 · 무관 0</div>
+        <div class="card-sub" id="label-trend-sub">↗ 긍정 332 · 중립 108 · 부정 4 · 무관 0</div>
         <canvas id="trendChart" height="90"></canvas>
         <div class="chart-legend">
           <span><span class="legend-dot" style="background:#7C65F6"></span>긍정</span>
@@ -498,7 +498,7 @@ a.link:hover { color: var(--primary); }
           </div>
           <span id="label-donut" style="font-size:11px;color:var(--text-3)">최근 30일</span>
         </div>
-        <div class="card-sub" id="label-donut-sub">↗ 긍정률 76% (전체 425건)</div>
+        <div class="card-sub" id="label-donut-sub">↗ 긍정률 75% (전체 444건)</div>
         <canvas id="donutChart" height="175"></canvas>
       </div>
     </div>
@@ -594,24 +594,24 @@ a.link:hover { color: var(--primary); }
                 </div>
             </td>
         </tr>
-        <tr data-kw="일룸 소파" style="cursor:pointer" onclick="filterByKw('일룸 소파', this)">
+        <tr data-kw="일룸 식탁" style="cursor:pointer" onclick="filterByKw('일룸 식탁', this)">
             <td>
                 <div class="kw-cell">
                     <span class="kw-dot" style="background:#FF7675"></span>
-                    <span style="font-weight:500">일룸 소파</span>
+                    <span style="font-weight:500">일룸 식탁</span>
                 </div>
             </td>
-            <td class="text-center">56</td>
-            <td class="text-center"><span class="chip chip-success">36</span></td>
-            <td class="text-center"><span class="chip chip-neutral">19</span></td>
-            <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center">57</td>
+            <td class="text-center"><span class="chip chip-success">32</span></td>
+            <td class="text-center"><span class="chip chip-neutral">25</span></td>
+            <td class="text-center"><span class="chip chip-success">0</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:64%;background:#FF7675"></div>
+                        <div class="progress-fill" style="width:56%;background:#FF7675"></div>
                     </div>
-                    <span class="progress-label">64%</span>
+                    <span class="progress-label">56%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -627,43 +627,17 @@ a.link:hover { color: var(--primary); }
                     <span style="font-weight:500">일룸 책상</span>
                 </div>
             </td>
-            <td class="text-center">56</td>
+            <td class="text-center">57</td>
             <td class="text-center"><span class="chip chip-success">40</span></td>
-            <td class="text-center"><span class="chip chip-neutral">15</span></td>
+            <td class="text-center"><span class="chip chip-neutral">16</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:71%;background:#FDCB6E"></div>
+                        <div class="progress-fill" style="width:70%;background:#FDCB6E"></div>
                     </div>
-                    <span class="progress-label">71%</span>
-                </div>
-            </td>
-            <td class="text-center">
-                <div style="display:flex;align-items:center;gap:6px">
-                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
-                </div>
-            </td>
-        </tr>
-        <tr data-kw="일룸 식탁" style="cursor:pointer" onclick="filterByKw('일룸 식탁', this)">
-            <td>
-                <div class="kw-cell">
-                    <span class="kw-dot" style="background:#00B894"></span>
-                    <span style="font-weight:500">일룸 식탁</span>
-                </div>
-            </td>
-            <td class="text-center">55</td>
-            <td class="text-center"><span class="chip chip-success">31</span></td>
-            <td class="text-center"><span class="chip chip-neutral">24</span></td>
-            <td class="text-center"><span class="chip chip-success">0</span></td>
-            <td class="text-center"><span class="chip chip-muted">0</span></td>
-            <td>
-                <div class="progress-wrap">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width:56%;background:#00B894"></div>
-                    </div>
-                    <span class="progress-label">56%</span>
+                    <span class="progress-label">70%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -675,21 +649,47 @@ a.link:hover { color: var(--primary); }
         <tr data-kw="일룸 매트리스" style="cursor:pointer" onclick="filterByKw('일룸 매트리스', this)">
             <td>
                 <div class="kw-cell">
-                    <span class="kw-dot" style="background:#A29BFE"></span>
+                    <span class="kw-dot" style="background:#00B894"></span>
                     <span style="font-weight:500">일룸 매트리스</span>
                 </div>
             </td>
-            <td class="text-center">50</td>
-            <td class="text-center"><span class="chip chip-success">35</span></td>
-            <td class="text-center"><span class="chip chip-neutral">14</span></td>
+            <td class="text-center">56</td>
+            <td class="text-center"><span class="chip chip-success">37</span></td>
+            <td class="text-center"><span class="chip chip-neutral">18</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:70%;background:#A29BFE"></div>
+                        <div class="progress-fill" style="width:66%;background:#00B894"></div>
                     </div>
-                    <span class="progress-label">70%</span>
+                    <span class="progress-label">66%</span>
+                </div>
+            </td>
+            <td class="text-center">
+                <div style="display:flex;align-items:center;gap:6px">
+                    <div style="width:36px;height:36px;border-radius:50%;background:conic-gradient(#00C897 100%, #EDF0F7 0);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#00C897">100</div>
+                </div>
+            </td>
+        </tr>
+        <tr data-kw="일룸 소파" style="cursor:pointer" onclick="filterByKw('일룸 소파', this)">
+            <td>
+                <div class="kw-cell">
+                    <span class="kw-dot" style="background:#A29BFE"></span>
+                    <span style="font-weight:500">일룸 소파</span>
+                </div>
+            </td>
+            <td class="text-center">56</td>
+            <td class="text-center"><span class="chip chip-success">36</span></td>
+            <td class="text-center"><span class="chip chip-neutral">19</span></td>
+            <td class="text-center"><span class="chip chip-danger">1</span></td>
+            <td class="text-center"><span class="chip chip-muted">0</span></td>
+            <td>
+                <div class="progress-wrap">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width:64%;background:#A29BFE"></div>
+                    </div>
+                    <span class="progress-label">64%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -705,17 +705,17 @@ a.link:hover { color: var(--primary); }
                     <span style="font-weight:500">일룸 프로모션</span>
                 </div>
             </td>
-            <td class="text-center">25</td>
+            <td class="text-center">27</td>
             <td class="text-center"><span class="chip chip-success">23</span></td>
-            <td class="text-center"><span class="chip chip-neutral">1</span></td>
+            <td class="text-center"><span class="chip chip-neutral">3</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:92%;background:#FD79A8"></div>
+                        <div class="progress-fill" style="width:85%;background:#FD79A8"></div>
                     </div>
-                    <span class="progress-label">92%</span>
+                    <span class="progress-label">85%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -731,17 +731,17 @@ a.link:hover { color: var(--primary); }
                     <span style="font-weight:500">일룸 뉴트</span>
                 </div>
             </td>
-            <td class="text-center">21</td>
-            <td class="text-center"><span class="chip chip-success">20</span></td>
-            <td class="text-center"><span class="chip chip-neutral">1</span></td>
+            <td class="text-center">24</td>
+            <td class="text-center"><span class="chip chip-success">22</span></td>
+            <td class="text-center"><span class="chip chip-neutral">2</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:95%;background:#6C5CE7"></div>
+                        <div class="progress-fill" style="width:92%;background:#6C5CE7"></div>
                     </div>
-                    <span class="progress-label">95%</span>
+                    <span class="progress-label">92%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -757,17 +757,17 @@ a.link:hover { color: var(--primary); }
                     <span style="font-weight:500">헤이븐 매트리스</span>
                 </div>
             </td>
-            <td class="text-center">17</td>
-            <td class="text-center"><span class="chip chip-success">17</span></td>
-            <td class="text-center"><span class="chip chip-neutral">0</span></td>
+            <td class="text-center">21</td>
+            <td class="text-center"><span class="chip chip-success">18</span></td>
+            <td class="text-center"><span class="chip chip-neutral">3</span></td>
             <td class="text-center"><span class="chip chip-success">0</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:100%;background:#7C65F6"></div>
+                        <div class="progress-fill" style="width:86%;background:#7C65F6"></div>
                     </div>
-                    <span class="progress-label">100%</span>
+                    <span class="progress-label">86%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -783,17 +783,17 @@ a.link:hover { color: var(--primary); }
                     <span style="font-weight:500">일룸 밴쿠버</span>
                 </div>
             </td>
-            <td class="text-center">14</td>
-            <td class="text-center"><span class="chip chip-success">8</span></td>
+            <td class="text-center">15</td>
+            <td class="text-center"><span class="chip chip-success">9</span></td>
             <td class="text-center"><span class="chip chip-neutral">5</span></td>
             <td class="text-center"><span class="chip chip-danger">1</span></td>
             <td class="text-center"><span class="chip chip-muted">0</span></td>
             <td>
                 <div class="progress-wrap">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width:57%;background:#00CEC9"></div>
+                        <div class="progress-fill" style="width:60%;background:#00CEC9"></div>
                     </div>
-                    <span class="progress-label">57%</span>
+                    <span class="progress-label">60%</span>
                 </div>
             </td>
             <td class="text-center">
@@ -934,7 +934,7 @@ a.link:hover { color: var(--primary); }
           <div class="card-title-icon" style="background:#F1F3F5">📋</div>
           실행 로그
         </div>
-        <span class="text-muted">마지막: 2026-02-26 09:53</span>
+        <span class="text-muted">마지막: 2026-02-27 09:49</span>
       </div>
       <table>
         <thead>
@@ -947,6 +947,13 @@ a.link:hover { color: var(--primary); }
           </tr>
         </thead>
         <tbody>
+            <tr>
+                <td class="text-muted">2026-02-27 09:49:49</td>
+                <td class="text-center">10</td>
+                <td class="text-center">19</td>
+                <td class="text-center"><span class="chip chip-success">성공</span></td>
+                <td class="text-center text-muted">83.09s</td>
+            </tr>
             <tr>
                 <td class="text-muted">2026-02-26 09:53:45</td>
                 <td class="text-center">10</td>
@@ -995,13 +1002,6 @@ a.link:hover { color: var(--primary); }
                 <td class="text-center">35</td>
                 <td class="text-center"><span class="chip chip-success">성공</span></td>
                 <td class="text-center text-muted">153.18s</td>
-            </tr>
-            <tr>
-                <td class="text-muted">2026-02-18 19:09:00</td>
-                <td class="text-center">10</td>
-                <td class="text-center">67</td>
-                <td class="text-center"><span class="chip chip-success">성공</span></td>
-                <td class="text-center text-muted">225.37s</td>
             </tr></tbody>
       </table>
     </div>
@@ -1017,11 +1017,11 @@ Chart.defaults.font.family = "'Inter', 'Malgun Gothic', sans-serif";
 const trendChart = new Chart(document.getElementById('trendChart').getContext('2d'), {
   type: 'bar',
   data: {
-    labels: ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"],
+    labels: ["01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26", "02-27"],
     datasets: [
-      { label: '긍정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], backgroundColor: '#7C65F6', borderRadius: 3, borderSkipped: false },
-      { label: '중립', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], backgroundColor: '#A29BFE', borderRadius: 3, borderSkipped: false },
-      { label: '부정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], backgroundColor: '#FF7675', borderRadius: 3, borderSkipped: false },
+      { label: '긍정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27, 7], backgroundColor: '#7C65F6', borderRadius: 3, borderSkipped: false },
+      { label: '중립', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32, 12], backgroundColor: '#A29BFE', borderRadius: 3, borderSkipped: false },
+      { label: '부정', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0], backgroundColor: '#FF7675', borderRadius: 3, borderSkipped: false },
       { label: '무관', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], backgroundColor: '#DFE6E9', borderRadius: 3, borderSkipped: false },
     ]
   },
@@ -1041,7 +1041,7 @@ const donutChart = new Chart(document.getElementById('donutChart').getContext('2
   data: {
     labels: ['긍정', '중립', '부정', '무관'],
     datasets: [{
-      data: [325, 96, 4, 0],
+      data: [332, 108, 4, 0],
       backgroundColor: ['#7C65F6', '#A29BFE', '#FF7675', '#DFE6E9'],
       borderWidth: 0, hoverOffset: 8,
     }]
@@ -1058,13 +1058,13 @@ const donutChart = new Chart(document.getElementById('donutChart').getContext('2
 });
 
 // ── 키워드 트렌드 라인 차트 ───────────────────────────────────────────────────
-const kwTrendDatasets = [{"label": "일룸", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 18, 0, 0, 0, 0, 10, 0, 10, 9], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 뉴트", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1, 8, 0, 0, 0, 0, 0, 0, 5, 0], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 14, 0, 0, 0, 0, 0, 0, 10, 10], "borderColor": "#FF7675", "backgroundColor": "#FF767522", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 밴쿠버", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 0, 0, 0, 0, 1, 0, 1, 0], "borderColor": "#FDCB6E", "backgroundColor": "#FDCB6E22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 소파", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 3, 20, 0, 0, 0, 0, 6, 0, 10, 9], "borderColor": "#00B894", "backgroundColor": "#00B89422", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 식탁", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 20, 0, 0, 0, 0, 6, 0, 10, 10], "borderColor": "#A29BFE", "backgroundColor": "#A29BFE22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 책상", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 6, 20, 0, 0, 0, 0, 1, 0, 10, 10], "borderColor": "#FD79A8", "backgroundColor": "#FD79A822", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 프로모션", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 8, 0, 0, 0, 0, 2, 0, 9, 1], "borderColor": "#6C5CE7", "backgroundColor": "#6C5CE722", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "한샘 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 20, 0, 0, 0, 0, 9, 0, 10, 10], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "헤이븐 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 4, 0, 0, 0, 0, 0, 0, 3, 0], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}];
+const kwTrendDatasets = [{"label": "일룸", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 18, 0, 0, 0, 0, 10, 0, 10, 9, 0], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 뉴트", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1, 8, 0, 0, 0, 0, 0, 0, 5, 0, 3], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 14, 0, 0, 0, 0, 0, 0, 10, 10, 6], "borderColor": "#FF7675", "backgroundColor": "#FF767522", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 밴쿠버", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 0, 0, 0, 0, 1, 0, 1, 0, 1], "borderColor": "#FDCB6E", "backgroundColor": "#FDCB6E22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 소파", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 3, 20, 0, 0, 0, 0, 6, 0, 10, 9, 0], "borderColor": "#00B894", "backgroundColor": "#00B89422", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 식탁", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 20, 0, 0, 0, 0, 6, 0, 10, 10, 2], "borderColor": "#A29BFE", "backgroundColor": "#A29BFE22", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 책상", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 6, 20, 0, 0, 0, 0, 1, 0, 10, 10, 1], "borderColor": "#FD79A8", "backgroundColor": "#FD79A822", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "일룸 프로모션", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 8, 0, 0, 0, 0, 2, 0, 9, 1, 2], "borderColor": "#6C5CE7", "backgroundColor": "#6C5CE722", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "한샘 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 10, 20, 0, 0, 0, 0, 9, 0, 10, 10, 0], "borderColor": "#7C65F6", "backgroundColor": "#7C65F622", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}, {"label": "헤이븐 매트리스", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 4, 0, 0, 0, 0, 0, 0, 3, 0, 4], "borderColor": "#00CEC9", "backgroundColor": "#00CEC922", "tension": 0.3, "fill": false, "pointRadius": 3, "borderWidth": 2}];
 // fullData 저장 (토글용)
 kwTrendDatasets.forEach(ds => { ds.fullData = ds.data.slice(); });
 const kwTrendChart = new Chart(document.getElementById('kwTrendChart').getContext('2d'), {
   type: 'line',
   data: {
-    labels: ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"],
+    labels: ["01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26", "02-27"],
     datasets: kwTrendDatasets,
   },
   options: {
@@ -1081,9 +1081,9 @@ const kwTrendChart = new Chart(document.getElementById('kwTrendChart').getContex
 });
 
 // ── 날짜 범위 버튼 ────────────────────────────────────────────────────────────
-const allDates = ["01-28", "01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26"];
+const allDates = ["01-29", "01-30", "01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13", "02-14", "02-15", "02-16", "02-17", "02-18", "02-19", "02-20", "02-21", "02-22", "02-23", "02-24", "02-25", "02-26", "02-27"];
 const chartData = {
-  pos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27], neu: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32], neg: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], irr: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], total: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 76, 44, 134, 0, 0, 0, 0, 35, 0, 78, 59]
+  pos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 38, 106, 0, 0, 0, 0, 32, 0, 57, 27, 7], neu: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 6, 28, 0, 0, 0, 0, 1, 0, 21, 32, 12], neg: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0], irr: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], total: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 76, 44, 134, 0, 0, 0, 0, 35, 0, 78, 59, 19]
 };
 const MONTHLY_GOAL = 300;
 
